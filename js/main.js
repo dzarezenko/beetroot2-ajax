@@ -9,7 +9,19 @@ function showRate(currencyCode, ratesList) {
   }
 }
 
-fetch(NB_CURRENCY_RATES_URL)
+async function getRates() {
+  let respose = await fetch(NB_CURRENCY_RATES_URL);
+  let ratesList = await respose.json();
+
+  //console.log(ratesList);
+  //return ratesList;
+  showRate('USD', ratesList);
+}
+
+getRates();
+
+
+/*fetch(NB_CURRENCY_RATES_URL)
   .then((response) => {
     return response.json();
   })
@@ -22,5 +34,6 @@ fetch(NB_CURRENCY_RATES_URL)
   .catch(e => {
     console.log(e);
   });
+*/
 
 console.log("Finished!");
